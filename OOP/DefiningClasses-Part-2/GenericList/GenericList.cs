@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace GenericListAndClasses
 {
     public class GenericList<T>
+         where T : IComparable
     {
-        private int capacity;
+        private int capacity = 1;
         private T[] arrayElements;
         private int index = 0;
         // I red the capacity with the constructor
@@ -21,11 +22,10 @@ namespace GenericListAndClasses
             dynamic min = arrayElements[0];
             for (int i = 1; i < this.arrayElements.Length; i++)
             {
-                if (min > this.arrayElements[i])
+                if (this.arrayElements[i].CompareTo(min) >= 0)
                 {
                     min = this.arrayElements[i];
-                    // with this i check if min is smaller
-                    // than all other elements in the array
+                    // I compare the 2 objects and if min is smaller i make it equal to the element
                 }
             }
             return min;
@@ -39,11 +39,10 @@ namespace GenericListAndClasses
             dynamic max = arrayElements[0];
             for (int i = 1; i < this.arrayElements.Length; i++)
             {
-                if (max < this.arrayElements[i])
+                if (this.arrayElements[i].CompareTo(max) <= 0)
                 {
                     max = this.arrayElements[i];
-                    // with this i check if max is bigger
-                    // than all other elements in the array
+                    // I compare the 2 objects and if max is smaller i make it equal to the element
                 }
             }
             return max;
@@ -64,7 +63,7 @@ namespace GenericListAndClasses
             return temp;
         }
 
-        public GenericList(int capacity)
+        public GenericList()
         {
             this.capacity = capacity;
             arrayElements = new T[this.capacity];

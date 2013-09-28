@@ -10,13 +10,14 @@ namespace GenericListAndClasses
     {
         static void Main(string[] args)
         {
-            GenericList<int> opa = new GenericList<int>(1);
-            opa.Add(1);
-            opa.Add(2);
-            opa.Add(3);
-            opa.Add(4);
-            opa.InsertElement(2, 0);
-            Console.WriteLine(opa.Min<int>());
+            GenericList<string> opa = new GenericList<string>();
+            opa.Add("fdsafsadffdsasdf");
+            opa.Add("dfadf");
+            opa.Add("fdaf");
+            opa.Add("afd");
+            opa.InsertElement(2, "Dobavi meee");
+            Console.WriteLine(opa.ToString());
+            Console.WriteLine(opa.Min<string>());
         }
     }
 }
