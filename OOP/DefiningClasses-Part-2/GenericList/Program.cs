@@ -18,6 +18,7 @@ namespace GenericListAndClasses
             opa.InsertElement(2, "Dobavi meee");
             Console.WriteLine(opa.ToString());
             Console.WriteLine(opa.Min<string>());
+            Console.WriteLine(opa[2]);
         }
     }
 }

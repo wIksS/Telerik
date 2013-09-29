@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DefiningClasses-PartTwo")]
+[assembly: AssemblyTitle("PointsIn3D")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DefiningClasses-PartTwo")]
+[assembly: AssemblyProduct("PointsIn3D")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e86a6f48-90bc-4148-ac2b-8c2ea05f4f79")]
+[assembly: Guid("47a13c68-d5d0-4a54-84c5-c5b5f25fc436")]
 
 // Version information for an assembly consists of the following four values:
 //

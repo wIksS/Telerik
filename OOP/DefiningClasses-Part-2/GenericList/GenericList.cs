@@ -82,12 +82,6 @@ namespace GenericListAndClasses
             // this adds a new element to the array
         }
 
-        public T AccessElement(int index)
-        {
-            return this.arrayElements[index];
-            // this returns the wanted element
-        }
-
         public void RemoveElement(int index)
         {
             this.arrayElements = arrayElements.Except(new T[] { arrayElements[index] }).ToArray();
@@ -153,6 +147,19 @@ namespace GenericListAndClasses
                 // I am showing at the moment
             }
             return "";
+        }
+        public dynamic this[int index]
+        {
+            get
+            {
+                return arrayElements[index];
+                // when you type numMatrix[row,col] it returns the given element
+            }
+            set
+            {
+                this.arrayElements[index] = value;
+                // this makes numMatrix[row,col] equal to the given value
+            }
         }
     }
 }
