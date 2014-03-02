@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <style>
+        button {
+            cursor: pointer;
+            padding: 5px 25px;
+            background: #35b128;
+            border: 1px solid #33842a;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 0 0 4px rgba(0,0,0, .75);
+            -moz-box-shadow: 0 0 4px rgba(0,0,0, .75);
+            box-shadow: 0 0 4px rgba(0,0,0, .75);
+            color: #f3f3f3;
+            font-size: 1.1em;
+        }
+        h2 {
+            display: inline-block;
+            margin:0px;
+            margin-left:10px;
+            padding:0px;
+        }
+    </style>
+</head>
+<body onkeypress="checkMethod(event)">
+    <button>Add Rect shape</button>
+    <button>Add Circle shape</button>
+    <h2>Or press : space || enter</h2>
+    <script>
+        var isTrue = true;
+        var t = 0;
+        var randRadius = []
+        var MovingShapes = function MovingShapes() {
+
+            this.rectShapes = [];
+            this.circleShapes = [];
+            this.circleShapesX = [];
+            this.circleShapesY = [];
+            this.counterr = [];
+            this.directions = [];
+            this.addRect = function addRect() {
+
+                AddFigure(this.rectShapes);
+                this.rectShapes[this.rectShapes.length - 1].style.left = randomNum(0, screen.width) + "px";
+                this.rectShapes[this.rectShapes.length - 1].style.top = randomNum(0, screen.height) + "px";
+                document.body.appendChild(this.rectShapes[this.rectShapes.length - 1]);// body.appendChild(div);
+                debugger;
+                this.counterr.push(0);
+                this.directions.push("left");
+            }
+            this.addCircle = function addCircle() {
+                AddFigure(this.circleShapes);
+                this.circleShapesX.push(randomNum(0, screen.width));
+                this.circleShapesY.push(randomNum(0, screen.height));
+                randRadius.push(randomNum(100, 500));
+                document.body.appendChild(this.circleShapes[this.circleShapes.length - 1]);// body.appendChild(div);
+
+            }
+            function AddFigure(element) {
+                var div = document.createElement("div");
+                div.style.width = 50 + "px";
+                div.style.height = 50 + "px";
+                div.style.position = "absolute";
+                div.style.background = randomColor();
+                div.style.color = randomColor();
+                div.style.border = 1 + "px " + "solid " + randomColor();
+                div.style.borderRadius = randomNum(0, 25) + "px";
+                element.push(div);
+            }
+
+            function moveCirlce() {
+                t += 0.05;
+
+                for (var i = 0; i < shapes.circleShapes.length; i++) {
+                    var element = shapes.circleShapes[i];
+                    var style = window.getComputedStyle(element);
+                    var r = 100;//randRadius[i];
+                    var xcenter = shapes.circleShapesX[i];
+                    var ycenter = shapes.circleShapesY[i];
+                    var newLeft = Math.floor(xcenter + (r * Math.cos(t)));
+                    var newTop = Math.floor(ycenter + (r * Math.sin(t)));
+                    $(element).animate({
+                        top: newTop,
+                        left: newLeft,
+                    }, 1, function () {
+                        moveCirlce();
+                    });
+                }
+            }
+            setInterval(function () { moveCirlce(1) }, 100);
+            function moveRect() {
+                debugger;
+                for (var i = 0; i < shapes.rectShapes.length; i++) {
+                    shapes.counterr[i]++;
+                    var element = shapes.rectShapes[i];
+                    var style = window.getComputedStyle(element),
+                    marginLeft = parseInt(style.getPropertyValue(shapes.directions[i].toLowerCase()));
+                    if (shapes.counterr[i] < 40) {
+                        element.style[shapes.directions[i]] = marginLeft + 10 + 'px';
+                    }
+                    else {
+                        element.style[shapes.directions[i]] = marginLeft - 10 + 'px';
+                    }
+                    if (shapes.counterr[i] == 20) {
+                        shapes.directions[i] = "top";
+                    }
+                    if (shapes.counterr[i] == 40) {
+                        shapes.directions[i] = "left";
+                    }
+                    if (shapes.counterr[i] == 60) {
+                        shapes.directions[i] = "top";
+                    }
+                    if (shapes.counterr[i] == 80) {
+                        shapes.directions[i] = 'left';
+                        shapes.counterr[i] = 0;
+                    }
+                }
+                requestAnimationFrame(moveRect);
+            }
+            requestAnimationFrame(moveRect);
+        }
+        var shapes = new MovingShapes();
+
+        function randomNum(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        function randomColor() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.round(Math.random() * 15)];
+            }
+            return color;
+        }        var buttons = document.getElementsByTagName('button');        buttons[0].onclick = function addRectOnClick() {
+            shapes.addRect();
+        }
+        buttons[1].onclick = function addCircleOnClick() {
+            shapes.addCircle();
+        }
+        function checkMethod(event) {
+            if (event.keyCode == 13) {
+                buttons[0].onclick();
+            }
+            if (event.keyCode == 32) {
+                buttons[1].onclick();
+            }
+        }
+    </script>
+</body>
+</html>

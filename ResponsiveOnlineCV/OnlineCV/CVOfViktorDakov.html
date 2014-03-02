@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+    </script>
+    <title>CV of Victor Dakov</title>
+    <link href="Navigation.css" rel="stylesheet" />
+    <link href="MainCSS.css" rel="stylesheet" />
+
+    <script>
+        var isShownSkills = true;
+        var isShownWorkExp = true;
+
+        window.onload = function () {
+            
+        }
+        function ShowOrCloseSkills() {
+            var container = document.getElementById('container'),
+            style = window.getComputedStyle(container),
+            prop = style.getPropertyValue("width");
+            // alert(parseInt(prop.toString()));
+            //var result = "\'" + classOfButton + "\'";
+            //alert(result);
+            //if ($(".SkillsText").css('display' == 'none')) {
+            //    isShownSkills = false;
+            //}
+            //            var container1 = document.getElementById('skills'),
+            //style1 = window.getComputedStyle(container1),
+            //prop1 = style.getPropertyValue("visability");
+            //            alert(prop1);
+            if (parseInt(prop.toString()) > 800 && !$(".SkillsText").is(":visible")) {
+                $(".SkillsText").toggle(1000);
+            }
+            else if (parseInt(prop.toString()) < 800) {
+                $(".SkillsText").toggle(1000);
+            }
+        }
+
+        function ShowOrCloseWorkExp() {
+            var container = document.getElementById('container'),
+            style = window.getComputedStyle(container),
+            prop = style.getPropertyValue("width");
+            // alert(parseInt(prop.toString()));
+            //var result = "\'" + classOfButton + "\'";
+            //var container = document.getElementById('workText'),
+            //style1 = window.getComputedStyle(container),
+            //display = style.getPropertyValue("border");
+            if (parseInt(prop.toString()) > 800 && !$(".WorkExp").is(":visible")) {
+                $(".WorkExp").toggle(1000);
+            }
+
+            else if (parseInt(prop.toString()) < 800) {
+                $(".WorkExp").toggle(1000);
+
+            }
+        }
+
+        function ShowBiography() {
+            $(".SkillsContainer").css("display", "none");
+            $(".WorkExpContainer").css("display", "none");
+            $(".hiddenBio").css("display", "inline-block");
+            $("#container").css("display", "block");
+            $("#container").css("max-width", "2000px");
+        }
+
+        function ShowHome() {
+            $(".SkillsContainer").css("display", "block");
+            $(".WorkExpContainer").css("display", "block");
+            $(".hiddenBio").css("display", "none");
+            $("#container").css("display", "block");
+            $("#container").css("max-width", "820px");
+        }
+
+        function ShowWorkExp() {
+            $(".SkillsContainer").css("display", "none");
+            $("#container").css("display", "none");
+            $(".hiddenBio").css("display", "none");
+            $(".WorkExpContainer").css("display", "block");
+        }
+
+        function ShowSkills() {
+            $(".SkillsContainer").css("display", "none");
+            $("#container").css("display", "none");
+            $(".hiddenBio").css("display", "none");
+            $(".SkillsContainer").css("display", "block");
+            $(".WorkExpContainer").css("display", "none");
+        }
+    </script>
+</head>
+<body>
+    <div class="headerWrapper">
+        <header>
+            <nav>
+                <div class='ribbon'>
+                    <a href='#' class="home" onclick="ShowHome()"><span>Home</span></a>
+                    <a href='#' class="biography" onclick="ShowBiography()"><span>Biography</span></a>
+                    <a href='#' onclick="ShowWorkExp()" class="work"><span>Work Exp</span></a>
+                    <a href='#' class="skills" onclick="ShowSkills()"><span>SkillsOverview</span></a>
+
+                </div>
+                <!--                <ul>
+                    <li>
+                        Online CV
+                    </li>
+                    <li class="hoe">Home
+                    </li>
+                    <li class="iography">Biography
+                    </li>
+                </ul>-->
+                <!--                <div>Online CV</div>
+                <div class="home">Home</div>
+                <div class="biography">Biography</div>    -->
+            </nav>
+        </header>
+    </div>
+    <header>
+        <div class="hiddenBio">
+            <h1>Biography</h1>
+        </div>
+    </header>
+    <section>
+        <div id="container">
+            <!--<div class="inlinePic">-->
+            <span class="img">
+                <img class="profilePic" alt="altColor" src="Viktor_400x300_clipped.png" width="300" height="300" />
+            </span>
+            <div class="MyName">
+                <header>
+                    <div>
+                        <h1>Victor Dakov</h1>
+                    </div>
+                </header>
+                <footer>
+                    <div>0887-70-20-74 ; viktordakov97@gmail.com</div>
+                </footer>
+                <article>
+                    <div id="bio">
+                        My name is Viktor Dakov. I am a student in the 10th grade in ОМГ "Академик Кирил Попов" which is the math highschool of Plovdiv. My profile is maths and informatics. I am also a student in the Academy of Telerik. I have been studying in the academy for about 10 months. At the moment I have passed three courses with exelence: C#1 , C#2 and OOP.
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="SkillsContainer">
+            <div class="menu">
+                <ul>
+                    <li class="fullWidth"><a onclick="ShowOrCloseSkills('SkillsText')">Skills Overview</a><a onclick="ShowOrCloseSkills('SkillsText')" class="deleteMe">Click Me !</a></li>
+                </ul>
+            </div>
+            <article>
+                <div class="SkillsText" id="skills">
+                    Right now I know the basic principles of programming. I have good knowledge of the principle of OOP. I know and I am able to use algorithms like binary search, most of the sorting algorithms, DFS, BFS, algorithms for finding the longest route in a graph or a tree. I can use hashsets, dictionaries, recursion etc. I have knowledge in CSS and HTML and a little bit of javascript (i have very intensive and long courses in javascript in a about two months so I am going to have deep knowledge of javascript in the future). Currently I am in the spring session of the academy. This means that we have more time for each course but this is going to end in about a month, because in march the two academies are going to unite and the intesitivity will be four times bigger. I have done two team projects in the academy and I was the captain of the first one (we didn't have a captain on the second one). We got good evaluation on both of the projects so I believe I can work well with people. I am also very ambitous and I am always able to finish projects in deadline.
+                </div>
+            </article>
+        </div>
+        <div class="WorkExpContainer">
+                <div class="menu">
+                    <ul>
+                        <li class="fullWidth"><a onclick="ShowOrCloseWorkExp()">Work Experience</a><a onclick="ShowOrCloseWorkExp()" class="deleteMe">Click Me !</a></li>
+                    </ul>
+                </div>            <article>
+                <div class="WorkExp" id="workText">
+                    I dont have any working experience, because i am still in highschool.
+                </div>
+            </article>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+Write your own personal CV in HTML/CSS/JS. A one page responsive web application.
+
+
+1. Design needs to adjust to 90% of the screen width above 1000px.
+
+2. Design needs to be 100% of the screen width below 1000px. Content should have 2% padding in this view.
+
+3. Content is 100% up to you!!! Do it like you are applying for a job with this project.
+
+4. Colors, text, lists and tables formatting is 100% up to you.
+
+5. When page is less than 800px in width "Skills Overview" and "Work Experience" must become foldable containers with active header (open/close on click).
+
+6. Create a full page for "Biography" accourding to your views of what your future employee should know about you and your interests.
+
+7. Pages content should be presented via JS only and not by refreshing the page.
+
+8. Show the best you can do! Use whatever you want in terms of JS/jQuery, CSS3 Effects/transitions.
+
+9. Browser compatibility required: IE 11, FF, Chrome
+
+
+Deadline: 10.02.2014

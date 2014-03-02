@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bucket</title>
+    <style>
+        body, html, img, div {
+            margin: 0px;
+            padding: 0px;
+            top:0px;
+            left:0px;
+        }
+
+        img {
+            position: absolute;
+        }
+    </style>
+</head>
+<body ondragstart="return false;" ondrop="return false;">
+    <!--    <img src="images/paper.jpg" id="img" width="50px" onclick="startMoving()" />-->
+    <script>
+        var papers = [];
+        var indexes = [];
+        var closedBucket = document.createElement("img");
+        var isPaper = false;
+        closedBucket.src = "images/closeBucket.png";
+        document.body.appendChild(closedBucket);
+        var openBucket = document.createElement("img");
+        openBucket.src = "images/openBucket.png";
+        document.body.appendChild(openBucket);
+        openBucket.style.display = "none";
+        //closedBucket.style.top = -48 + "px";
+      //  closedBucket.style.height = 320 + "px";
+        //closedBucket.hover(function () {
+        //});
+        //closedBucket.addEventListener("mousedown", function (e) {
+        //   // if (e.buttons == 1 || e.buttons==3) {
+        //        openBucket.style.display = "inline-block";
+        //        closedBucket.style.display = "none";
+        //  //  }
+        //});
+        //openBucket.addEventListener("mouseout", function () {
+        //    if (true) {
+        //        closedBucket.style.display = "inline-block";
+        //        openBucket.style.display = "none";
+        //    }
+
+        //});
+        function Paper(index, element) {
+            this.index = index;
+            this.paper = element;
+        }
+        for (var i = 0; i < 10; i++) {
+            var curPaper = document.createElement("img");
+            curPaper.src = "images/paper.png";
+            curPaper.style.position = "absolute";
+            curPaper.style.top = randomNum(1, screen.height - 200) + "px";
+            curPaper.style.left = randomNum(250, screen.width - 10) + "px";
+            curPaper.style.width = 50 + "px";
+            papers.push(new Paper(i, curPaper));
+            document.body.appendChild(curPaper);
+            indexes.push(i);
+
+        }
+
+        for (var i = 0; i < papers.length; i++) {
+            // debugger;
+            papers[i].paper.addEventListener("mousedown", function () {
+                //alert (this instanceof(Object));
+
+                var element = this;
+                isPaper = true;
+                document.onmousemove = function (e) {
+                    element.style.top = e.y - 20 + "px";
+                    element.style.left = e.x - 20 + "px";
+                    if (e.x- 20 <= 200 && e.y -20 <= 310) {
+                        openBucket.style.display = "inline-block";
+                        closedBucket.style.display = "none";
+                    }
+                    else {
+                        closedBucket.style.display = "inline-block";
+                        openBucket.style.display = "none";
+                    }
+                };
+            });
+            papers[i].paper.addEventListener("mouseup", function (e) {
+                index = this; 
+               // debugger;
+                document.onmousemove = function () {
+                    //papers.splice(index, 1);
+                };
+                isPaper = false;
+                if (e.x- 20 <= 200 && e.y -20 <= 310) {
+                    papers[index].paper.style.display = "none";
+                    closedBucket.style.display = "inline-block";
+                    openBucket.style.display = "none";
+                }
+            }.bind(i));
+        }
+
+        //function updatePosition(e, index) {
+        //    papers[index].style.top = e.y - 20 + "px";
+        //    papers[index].style.left = e.x - 20 + "px";
+        //}
+
+        function randomNum(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+    </script>
+</body>
+</html>
