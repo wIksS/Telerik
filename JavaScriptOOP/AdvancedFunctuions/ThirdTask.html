@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="ConsoleStyle.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body onkeypress="clicked(event)">
+    <div id="js-console" class="js-console">
+        <!--        <div>Enter line :
+            <input type="text" /></div>
+        <div>Press : enter - line; space - error; shift - warning</div>-->
+    </div>
+    <script src="ConsoleScript.js"></script>
+    <script>
+        var SpecialConsole = function () {
+            this.writeLine = function () {
+                if (arguments.length == 1) {
+                    jsConsole.writeLine(arguments[0].toString());
+                    return;
+                }
+                var mainString = arguments[0];
+                var result = "";
+                var previousIndex = 0;
+                for (var i = 1; i < arguments.length; i++) {
+                    debugger;
+                    var index = mainString.indexOf(i - 1);
+                    result += mainString.substr(previousIndex, index - previousIndex - 1);
+                    result += arguments[i];
+                    previousIndex = index + 2;
+                }
+                result += mainString.substr(previousIndex, mainString.length - previousIndex);
+                jsConsole.writeLine(result.toString());
+            }
+            this.writeError = function () {
+                if (arguments.length == 1) {
+                    jsConsole.writeLine(arguments[0].toString());
+                    return;
+                }
+                var mainString = arguments[0];
+                var result = "Error : ";
+                var previousIndex = 0;
+                for (var i = 1; i < arguments.length; i++) {
+                    debugger;
+                    var index = mainString.indexOf(i - 1);
+                    result += mainString.substr(previousIndex, index - previousIndex - 1);
+                    result += arguments[i];
+                    previousIndex = index + 2;
+                }
+                result += mainString.substr(previousIndex, mainString.length - previousIndex);
+                jsConsole.writeLine(result.toString());
+            }
+            this.writeWarning = function () {
+                if (arguments.length == 1) {
+                    jsConsole.writeLine(arguments[0].toString());
+                    return;
+                }
+                var mainString = arguments[0];
+                var result = "Warning : ";
+                var previousIndex = 0;
+                for (var i = 1; i < arguments.length; i++) {
+                    debugger;
+                    var index = mainString.indexOf(i - 1);
+                    result += mainString.substr(previousIndex, index - previousIndex - 1);
+                    result += arguments[i];
+                    previousIndex = index + 2;
+                }
+                result += mainString.substr(previousIndex, mainString.length - previousIndex);
+                jsConsole.writeLine(result.toString());
+            }
+        }
+        var specialConsole = new SpecialConsole();
+        var input = document.getElementsByTagName("input");
+
+        specialConsole.writeLine("Message: hello");
+        //logs to the console "Message: hello"
+        specialConsole.writeLine("Message: {0}", "hello");
+        //logs to the console "Message: hello"
+        specialConsole.writeError("Error: {0}", "Something happened");
+        specialConsole.writeWarning("Warning: {0}", "A warning");        
+    </script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="FourthTaskCSS.css" rel="stylesheet" />
+    <script>
+        function CalculateExpression() {
+            var element = document.getElementById("textCalc");
+            var index = element.value.indexOf('+');
+            if (index != -1) {
+                var firstPart = element.value.substring(0, index);
+                var secondPart = element.value.substring(index + 1, element.value.length);
+                element.value = parseInt(firstPart) + parseInt(secondPart);
+            }
+            index = element.value.indexOf('*');
+            if (index != -1) {
+                var firstPart = element.value.substring(0, index);
+                var secondPart = element.value.substring(index + 1, element.value.length);
+                element.value = parseInt(firstPart) * parseInt(secondPart);
+            }
+            index = element.value.indexOf('-');
+            if (index != -1) {
+                var firstPart = element.value.substring(0, index);
+                var secondPart = element.value.substring(index + 1, element.value.length);
+                element.value = parseInt(firstPart) - parseInt(secondPart);
+            }
+            index = element.value.indexOf('%');
+            if (index != -1) {
+                var firstPart = element.value.substring(0, index);
+                var secondPart = element.value.substring(index + 1, element.value.length);
+                element.value = parseInt(firstPart) % parseInt(secondPart);
+            }
+            index = element.value.indexOf('/');
+            if (index != -1) {
+                var firstPart = element.value.substring(0, index);
+                var secondPart = element.value.substring(index + 1, element.value.length);
+                element.value = parseInt(firstPart) / parseInt(secondPart);
+            }
+        }
+
+        function PrintOnField(element) {
+            var curElement = document.getElementById("textCalc");
+            if (!curElement.value && !isNaN(element)) {
+                curElement.value = element;
+            }
+            else if (curElement.value && !isNaN(element)) {
+                curElement.value += element;
+            }
+            else if ((element == '+' || element == '*' || element == '%' || element == '/') && curElement.value.indexOf('-') == -1 && curElement.value.indexOf('%') == -1 && curElement.value.indexOf('+') == -1 && curElement.value.indexOf('/') == -1 && curElement.value.indexOf('*') == -1) {
+                curElement.value += element;
+            }
+        }
+
+        function ClearCalc() {
+            var element = document.getElementById("textCalc");
+            element.value = null;
+        }
+
+        function RemoveLastDigit() {
+            var element = document.getElementById("textCalc");
+            element.value = element.value.substring(0, element.value.length - 1);
+        }
+    </script>
+</head>
+<body>
+    <div id="border">
+        <header>
+            <div class="calcImage">
+                <img src="http://i41.tinypic.com/k9doom.png" /></div>
+            <div class="h1Div">
+                <h1>Calculator</h1>
+            </div>
+            <div class="xButton">
+                <button id="xButton">&#9587;</button>
+            </div>
+        </header>
+        <div id="Content">
+            <header>
+                <nav>
+                    <div>
+                        <ul>
+                            <li>Изглед
+                            </li>
+                            <li>Редактиране
+                            </li>
+                            <li>Помощ
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <section class="calculator">
+                <input id="textCalc" type="text" placeholder="0" />
+                <div class="binary">
+                    <ul class="binaryUl">
+                        <li>0000</li>
+                        <li>0000</li>
+                        <li>0000</li>
+                        <li>0000</li>
+                        <li>0000</li>
+                        <li>0000</li>
+                        <li>0000</li>
+                        <li>0000</li>
+                    </ul>
+                    <ul class="decUl">
+                        <li class="middleMargin">63
+                        </li>
+                        <li class="marginRight">47
+                        </li>
+                        <li>32
+                        </li>
+                    </ul>
+                    <ul class="binaryUl">
+                        <li>0000</li>
+                        <li>0000</li>
+                        <li>1000</li>
+                        <li>0111</li>
+                        <li>0001</li>
+                        <li>1011</li>
+                        <li>1011</li>
+                        <li>0111</li>
+                    </ul>
+                    <ul class="decUl">
+                        <li class="middleMargin">31
+                        </li>
+                        <li class="marginRight">15
+                        </li>
+                        <li>00
+                        </li>
+                    </ul>
+                </div>
+                <div class="system">
+                    <div class="system1">
+                        <form action="">
+                            <input class="bottomPadding" type="radio" name="system" id="Hex" value="Hex">
+                            <label for="Hex">Hex</label><br />
+                            <input class="bottomPadding" type="radio" checked="checked" name="system" id="Dex" value="Dex">
+                            <label for="Dex">Dex</label><br />
+                            <input class="bottomPadding" type="radio" name="system" id="Oct" value="Oct">
+                            <label for="Oct">Oct</label><br />
+                            <input class="bottomPadding" type="radio" name="system" id="Bin" value="Bin">
+                            <label for="Bin">Bin</label>
+                        </form>
+                    </div>
+                    <div class="system1">
+                        <form action="">
+                            <input class="bottomPadding" type="radio" checked="checked" name="system" id="qword" value="Qword">
+                            <label for="qword">Qword</label><br />
+                            <input class="bottomPadding" type="radio" name="system" id="dword" value="Dword">
+                            <label for="dword">Dword</label><br />
+                            <input class="bottomPadding" type="radio" name="system" id="word" value="Word">
+                            <label for="word">Word</label><br />
+                            <input class="bottomPadding" type="radio" name="system" id="byte" value="Byte">
+                            <label for="byte">Byte</label>
+                        </form>
+                    </div>
+                </div>
+                <div class="keyboard">
+                    <div>
+                        <ul>
+                            <li class="firstButton">
+                                <button class="disabled" disabled="disabled"></button>
+                            </li>
+                            <li>
+                                <button>Mod</button>
+                            </li>
+                            <li>
+                                <button class="disabled" disabled="disabled">A</button>
+                            </li>
+                            <li>
+                                <button>MC</button>
+                            </li>
+                            <li>
+                                <button>MR</button>
+                            </li>
+                            <li>
+                                <button>MS</button>
+                            </li>
+                            <li>
+                                <button>M+</button>
+                            </li>
+                            <li>
+                                <button>M-</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>
+                                <button>{</button>
+                            </li>
+                            <li>
+                                <button>}</button>
+                            </li>
+                            <li>
+                                <button class="disabled" disabled="disabled">B</button>
+                            </li>
+                            <li>
+                                <button onclick="RemoveLastDigit()" class="arrow">&#8592;</button>
+                            </li>
+                            <li>
+                                <button onclick="ClearCalc()">CE</button>
+                            </li>
+                            <li>
+                                <button onclick="ClearCalc()">C</button>
+                            </li>
+                            <li>
+                                <button>+_</button>
+                            </li>
+                            <li>
+                                <button>^^</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>
+                                <button>RoL</button>
+                            </li>
+                            <li>
+                                <button>RoR</button>
+                            </li>
+                            <li>
+                                <button class="disabled" disabled="disabled">C</button>
+                            </li>
+                            <li>
+                                <button class="numbers" onclick="PrintOnField('7')">7</button>
+                            </li>
+                            <li>
+                                <button class="numbers" onclick="PrintOnField('8')">8</button>
+                            </li>
+                            <li>
+                                <button class="numbers" onclick="PrintOnField('9')">9</button>
+                            </li>
+                            <li>
+                                <button onclick="PrintOnField('/')">/</button>
+                            </li>
+                            <li>
+                                <button onclick="PrintOnField('%')">%</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>
+                                <button>Or</button>
+                            </li>
+                            <li>
+                                <button>Xor</button>
+                            </li>
+                            <li>
+                                <button class="disabled" disabled="disabled">D</button>
+                            </li>
+                            <li>
+                                <button class="numbers" onclick="PrintOnField('4')">4</button>
+                            </li>
+                            <li>
+                                <button class="numbers" onclick="PrintOnField('5')">5</button>
+                            </li>
+                            <li>
+                                <button class="numbers" onclick="PrintOnField('6')">6</button>
+                            </li>
+                            <li>
+                                <button onclick="PrintOnField('*')">*</button>
+                            </li>
+                            <li>
+                                <button>1/x</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <button class="equal" onclick="CalculateExpression()">=</button>
+
+                        <div>
+                            <ul>
+                                <li>
+                                    <button>Lsh</button>
+                                </li>
+                                <li>
+                                    <button>Rsh</button>
+                                </li>
+                                <li>
+                                    <button class="disabled" disabled="disabled">E</button>
+                                </li>
+                                <li>
+                                    <button class="numbers" onclick="PrintOnField('1')">1</button>
+                                </li>
+                                <li>
+                                    <button class="numbers" onclick="PrintOnField('2')">2</button>
+                                </li>
+                                <li>
+                                    <button class="numbers" onclick="PrintOnField('3')">3</button>
+                                </li>
+                                <li>
+                                    <button onclick="PrintOnField('-')">-</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>
+                                    <button>Not</button>
+                                </li>
+                                <li>
+                                    <button>And</button>
+                                </li>
+                                <li>
+                                    <button class="disabled" disabled="disabled">F</button>
+                                </li>
+                                <li>
+                                    <button class="numbers" id="zero" onclick="PrintOnField('0')">0</button>
+                                </li>
+                                <li>
+                                    <button>,</button>
+                                </li>
+                                <li>
+                                    <button onclick="PrintOnField('+')">+</button>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

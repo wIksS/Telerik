@@ -1,0 +1,73 @@
+h1, body, html, header, div, section, article {
+    margin:0px;
+    padding:0px
+}
+body, html {
+    height:100%;
+    width:100%;
+}
+.inlineBlock {
+    display:inline-block;
+}
+.wrapper {
+    width:569px
+}
+.innerContentWrapper:last-of-type {
+    margin-bottom:17px
+}
+h1 {
+    color:#00acef;
+    display:inline-block;
+    text-decoration:underline;
+}
+header div {
+    margin-left:25% 
+}
+hr {
+    border:1px solid #4a4a4a;
+    margin-left:30px;
+    margin-right:30px
+}
+section > div {
+    border:2px solid #4a4a4a;
+}
+.textAndPic {
+    vertical-align:top;
+}
+legend {
+    text-align:center;
+}
+fieldset {
+    margin-top:5px;
+    border:2px solid #4a4a4a;
+}
+.marginLeft {
+    margin-left:5px;
+}
+.marginRight {
+    margin-right:8px;
+}
+.textWrapper {
+    vertical-align:top;
+    width:100px;
+    margin-top:30px;
+    margin-right:-10px
+}
+.textWrapper div {
+    margin-bottom:20px;
+}
+.bottomText {
+    margin-left:40px;
+    margin-right:43px;
+    margin-bottom:5px
+}
+.rangeBoxWrapper {
+    width:200px;
+    border:none;
+    vertical-align:top;
+    margin-top:100px;
+    margin-left:15px;
+}
+    .rangeBoxWrapper div {
+        margin-bottom:15px
+    }

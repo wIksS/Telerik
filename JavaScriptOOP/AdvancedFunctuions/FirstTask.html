@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="ConsoleStyle.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body onkeypress="RunScript(event)">
+    <div id="js-console" class="js-console"></div>
+    <script src="ConsoleScript.js"></script>
+    <script>
+        var div = document.createElement("div");
+        div.innerHTML = "gfdfdsfdsfsafdsfs";
+        var domModule = function () {
+            this.appendChild = appendChild;
+            this.removeChild = removeChild;
+            this.addHandler = addHandler;
+
+            function addHandler(selector, eventType, eventFunction) {
+                var element = document.querySelector(selector);
+                element.addEventListener(eventType, eventFunction, false);
+            }
+
+            function appendChild(element, selector) {
+                if (typeof element=='string') {
+                    element = document.querySelector(selector);
+                }
+                var parent = document.querySelector(selector);
+                parent.appendChild(element);
+            }
+            function removeChild(parentSelector, childSelector) {
+                var child = document.querySelector(childSelector);
+                if (typeof parentSelector == 'string') {
+                    var parent = document.querySelector(parentSelector);
+                    parent.removeChild(child);
+                }
+                else {
+                    parentSelector.removeChild(child);
+                }
+
+            }
+        }
+
+        var dom = new domModule();
+        dom.appendChild(div, "#js-console");
+        dom.removeChild("#js-console", "div div");
+        dom.addHandler("#js-console", 'click', function () { alert("Clicked") });
+    </script>
+</body>
+</html>

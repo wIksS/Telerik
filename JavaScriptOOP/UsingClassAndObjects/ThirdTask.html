@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="ConsoleStyle.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+    <div id="js-console" class="js-console">
+
+    </div>
+    <script src="ConsoleScript.js"></script>
+    <script>
+        alert(5);
+        var array = [1, 2, 3, 4, 5];
+        var copiedArray = DeepCopy(array);
+        copiedArray[0] = 57;
+        jsConsole.writeLine("The original array has stayed the same : " + array[0]);
+        jsConsole.writeLine("The copied array has changed : " + copiedArray[0]);
+        jsConsole.writeLine("------------------------------------------------------------------------------");
+
+        var num = 57;
+        var copiedNum = DeepCopy(num);
+        copiedNum = 24;
+        jsConsole.writeLine("The original num has stayed the same : " + num);
+        jsConsole.writeLine("The copied num has changed : " + copiedNum);
+        jsConsole.writeLine("------------------------------------------------------------------------------");
+        
+        var secondArray = [1, 2, 3, 4, 5];
+        var notCopiedArray = secondArray;
+        notCopiedArray[0] = 57;
+        jsConsole.writeLine("Normal copy : ");
+        jsConsole.writeLine("The original array has changed : " + secondArray[0]);
+        jsConsole.writeLine("The copied array has changed : " + notCopiedArray[0]);
+        jsConsole.writeLine("------------------------------------------------------------------------------");
+
+        function DeepCopy(originalObject) {
+            var copiedObject = {};
+            jQuery.extend(copiedObject, originalObject);
+            return copiedObject;
+        }
+    </script>
+</body>
+</html>

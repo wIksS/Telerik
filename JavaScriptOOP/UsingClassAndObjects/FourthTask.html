@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="ConsoleStyle.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+    <div id="js-console" class="js-console"></div>
+    <script src="ConsoleScript.js"></script>
+    <script>
+        var array = [1, 2, 3, 4];
+        jsConsole.writeLine("Array has property length : " + HasProperty(array, "length"));
+        jsConsole.writeLine("------------------------------------------------------------------------------");
+        jsConsole.writeLine("Array has property x : " + HasProperty(array, "x"));
+        jsConsole.writeLine("------------------------------------------------------------------------------");
+        var someObj = function(x){
+            this.x = x;
+        }
+        var obj = new someObj(45);
+        jsConsole.writeLine("Simple obj has property x : " + HasProperty(obj, "x"));
+        jsConsole.writeLine("------------------------------------------------------------------------------");
+
+        function HasProperty(obj, prop) {
+            if (obj[prop]) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

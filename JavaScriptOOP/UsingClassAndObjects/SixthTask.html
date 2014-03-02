@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="ConsoleStyle.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body onkeypress="return RunScript(event)">
+    <div id="js-console" class="js-console">
+        <div>Enter person data </div>
+        <div>First name :
+            <input type="text" /></div>
+        <div>Last name :
+            <input type="text" /></div>
+        <div>Age :
+            <input type="text" /></div>
+        <div>Type of grouping :
+            <input type="text" />
+            (age, firstname, lastname) </div>
+        <div>(Press enter)</div>
+    </div>
+    <script src="ConsoleScript.js"></script>
+    <script>
+        var persons = [];
+
+        function RunScript(event) {
+
+            if (event.keyCode == 13) {
+                var firstName = jsConsole.read("div div:nth-of-type(2) input");
+                var lastName = jsConsole.read("div div:nth-of-type(3) input");
+                var age = jsConsole.read("div div:nth-of-type(4) input");
+                persons.push(new Person(firstName, lastName, age));
+                var attribute = jsConsole.read("div div:nth-of-type(5) input");
+                var groupByattribute = GroupByParameter(persons, attribute);
+                var keys = Object.keys(groupByattribute);
+                for (var i = 0; i < keys.length; i++) {
+                    jsConsole.writeLine(groupByattribute[keys[i]]);
+                }
+            }
+        }
+
+        function GroupByParameter(objects, attribute) {
+            var result = [];
+            for (var i = 0; i < objects.length; i++) {
+                result.push(objects[i][attribute]+":"+objects[i].firstName + " " + objects[i].lastname);
+            }
+            return result;
+        }
+
+        var Person = function (firstName, lastName, age) {
+            return {
+                firstName: firstName,
+                lastname: lastName,
+                age: age
+            }
+        };
+    </script>
+</body>
+</html>

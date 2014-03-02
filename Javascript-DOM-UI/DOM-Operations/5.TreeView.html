@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+    </script>
+    <style>
+        ul li ul {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>Item
+        </li>
+        <li>Item
+            <ul>
+                <li>Sub Item
+                </li>
+                <li>Sub Item
+                </li>
+                <li>Sub Item
+                    <ul>
+                        <li>Sub Item
+                        </li>
+                        <li>Sub Item
+                        </li>
+                        <li>Sub Item
+                                <ul>
+                                    <li>Sub Item
+                                    </li>
+                                    <li>Sub Item
+                                    </li>
+                                    <li>Sub Item
+                                    </li>
+                                </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>Item
+            <ul>
+                <li>Sub Item
+                    <ul>
+                        <li>Sub Item
+                            <ul>
+                                <li>Sub Item
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>Item
+        </li>
+        <li>Item
+        </li>
+    </ul>
+    <script type="text/javascript">
+        var allLi = document.getElementsByTagName("li");
+        for (var i = 0; i < allLi.length; i++) {
+            allLi[i].onclick = DisplayAllChildNodes;
+        }
+
+        function DisplayAllChildNodes() {
+            event.stopPropagation();
+           $(this.firstElementChild).toggle('slow');
+           var node = this.firstElementChild;
+           node = node.firstElementChild;
+           var isTrue = false;
+           while (node) {
+               var style = window.getComputedStyle(node),
+               display = style.getPropertyValue('display');
+               if (display == "block") {
+                   alert(node.parentElement.nodeName);   
+                   node.style.display = "none";
+                   isTrue = true;
+               }
+               node = node.nextElementSibling;
+           }
+           if (isTrue) {
+               return;
+           }
+           node = this.firstElementChild;
+           while (node) {
+               var style = window.getComputedStyle(node),
+               display = style.getPropertyValue('display');
+               if (display == "none") {
+                   node.style.display = "block";
+               }
+               node = node.nextElementSibling;
+           }
+        //    for (var i = nodes.length-1; i >= 1; i--) {
+        //        if (nodes[i].nodeName.toLowerCase() == 'ul') {
+        //            var style = window.getComputedStyle(nodes[i]);
+        //            if (style) {
+        //                var displayy = style.getPropertyValue('display');
+
+        //            }
+        //            if (displayy == "block") {
+        //                isTrue = true; alert(nodes[i].innerHTML);
+
+        //                nodes[i].style.display = "none";
+        //            }
+        //        }
+        //    }
+        //    if (!isTrue) {
+        //        for (var i = 0; i < nodes.length; i++) {
+        //            if (nodes[i].nodeName.toLowerCase() == 'ul') {
+        //                var style = window.getComputedStyle(nodes[i]),
+        //                display = style.getPropertyValue('display');
+        //                var disp = display;
+        //                if (disp == "none") {
+        //                    nodes[i].style.display = "block";
+        //                }
+        //            }
+
+
+        //        }
+        //    }
+        }
+    </script>
+</body>
+</html>

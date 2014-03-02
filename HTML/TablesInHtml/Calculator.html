@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Calculator</title>
+	<style type="text/css">
+	    td {	        
+            border-collapse: collapse;
+            border:1px solid #000;
+	    }
+	    input[type="button"] {
+            height:50px;
+            width:50px;
+	    }
+	    #Zero 
+        {
+            width:102px;
+            height:50px;
+	    }
+	    #result {
+            width:202px;
+            height:40px;
+	    }
+
+	</style>
+</head>
+<body>
+    <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+            <td colspan="4"><textarea id="result" dir="rtl">123</textarea>
+        </tr>
+        <tr>
+            <td><input type="button" value="1"/></input></td>
+            <td><input type="button" value="2"/></input></td>
+            <td><input type="button" value="3"/></input></td>
+            <td><input type="button" value="+"/></input></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4"/></input></td>
+            <td><input type="button" value="5"/></input></td>
+            <td><input type="button" value="6"/></input></td>
+            <td><input type="button" value="-"/></input></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7"/></input></td>
+            <td><input type="button" value="8"/></input></td>
+            <td><input type="button" value="9"/></input></td>
+            <td><input type="button" value="*"/></input></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="button" id="Zero" value="0"/></input></td>
+            <td><input type="button" value="."/></input></td>
+            <td><input type="button" value="/"/></input></td>
+        </tr>
+    </table>
+
+</body>
+</html>

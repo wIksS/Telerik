@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="ConsoleStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="js-console" class="js-console">
+        <div>Enter first point x :<input type="text" id="firstInput"/></div>
+        <div>Enter first point y :<input type="text" id="secondInput"/></div>
+        <div>Enter second point x :<input type="text" id="thirdInput"/></div>
+        <div>Enter second point y :<input type="text" id="fourthInput"/></div>
+        <div>When you enter two points three times the program will automaticly</div>
+        <div>check if those 3 segment lines can form a triangle</div>
+        <div><button type="submit" onclick="RunJS()">Enter line!</button></div>
+    </div>
+    <script src="ConsoleScript.js"></script>
+    <script>
+
+        var lines = [];
+        var firstPoints = [];
+        var secondPoints = [];
+
+        function Point(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        function Line(firstPoint, secondPoint) {
+            return {
+                firstPoint: firstPoint,
+                secondPoint: secondPoint,
+                CalculateDistance: function () {
+                    var distance = Math.sqrt(((secondPoint.x - firstPoint.x) * (secondPoint.x - firstPoint.x)) + ((secondPoint.y - firstPoint.y) * (secondPoint.y - firstPoint.y)));
+                    return distance;
+                }
+            }
+        }
+
+        function RunJS() {
+            var firstPointX = jsConsole.readInteger("#firstInput");
+            
+            var firstPointY = jsConsole.readInteger("#secondInput");
+            firstPoints.push(new Point(firstPointX, firstPointY));
+            var secondPointX = jsConsole.readInteger("#thirdInput");
+            var secondPointY = jsConsole.readInteger("#fourthInput");
+            secondPoints.push(new Point(secondPointX, secondPointY));
+            for (var i = 0; i < firstPoints.length; i++) {
+                if (firstPoints.length > 1) {
+                    i++;
+                }
+                lines.push(new Line(firstPoints[i], secondPoints[i]));
+            }
+            for (var i = 0; i < lines.length; i++) {
+                jsConsole.writeLine("Distance of " + (i+1) + " : " + lines[i].CalculateDistance());
+            }
+            if (lines.length == 3) {
+                var canForm = true;
+                var firstLineLength = line[0].CalculateDistance(),
+                    secondLineLength = line[1].CalculateDistance(),
+                    thirdLineLength = line[1].CalculateDistance();
+
+                if (firstLineLength >= (secondLineLength + thirdLineLength)) {
+                    canForm = false
+                }
+                if (secondLineLength >= (firstLineLength + thirdLineLength)) {
+                    canForm = false;
+                }
+                if (thirdLineLength >= (firstLineLength + secondLineLength)) {
+                    canForm = false;
+                }
+                if (canForm == true) {
+                    jsConsole.writeLine("Those 3 segment lines can form a triangle");
+                }
+            }
+        }
+    </script>
+</body>
+</html>

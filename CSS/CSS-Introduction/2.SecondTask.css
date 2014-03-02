@@ -1,0 +1,29 @@
+thead {
+    background-color:#56B906;
+    color:white
+}
+td {
+    width:150px;
+    padding:10px;
+    border-left:1px solid gray;
+    vertical-align:central;
+}
+table {
+    border-collapse:collapse;
+}
+table td:first-child {
+    border-left:none;
+}
+tbody tr:nth-child(2n) {
+    background-color:#ECECD8
+}
+td .flag {
+    height:15px;
+    width:27px;
+    vertical-align:middle;
+    padding-right:8px;
+}
+body
+{
+    font-family:Helvetica, Arial, sans-serif;
+}

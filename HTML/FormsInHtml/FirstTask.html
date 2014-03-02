@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>First Task</title>
+	<style type="text/css">
+	    table 
+        {
+            border:1px solid gray;
+            border-collapse:collapse;
+	    }
+        th,td,tr
+        {
+        border:1px solid gray;
+        border-collapse:collapse;
+	    }
+	    th 
+        {
+            width:155px;
+            text-align:right;
+	    }
+	    .textField 
+        {
+            width:270px;
+	    }
+	    #Address 
+        {
+            height:50px;
+            width:257px;
+	    }
+	    .CityText 
+        {
+            width:170px;
+	    }
+	    .StateText 
+        {
+            width:40px;
+	    }
+	    .PostalCode 
+        {
+            width:80px;
+	    }
+       	#countries
+        {
+            width:180px;
+	    }
+	    .Phone 
+        {
+            width:50px;
+	    }
+	    .PhoneNum 
+        {
+            width:105px;
+	    }
+	    .Birth 
+        {
+            width:20px;
+	    }
+	    .Year 
+        {
+            width:55px;
+	    }
+	    #Comments 
+        {
+            height:80px;
+            width:257px;
+	    }
+	    div
+        {
+            background-color: lightskyblue;
+	    }
+	    .center
+        {
+            text-align:center;
+	    }
+	    #blueRow {
+            background:#D1EDE1;
+	    }
+	</style>
+</head>
+<body>
+    <form>
+        <table cellpadding="5">
+            <tr>
+                <th><label for="LastName">Last Name</label></th>
+                <td colspan="3"><input type="text" id="LastName" placeholder="Nakov" class="textField" /></td>
+            </tr>
+            <tr>
+                <th><label for="FirstName">First Name</label></th>
+                <td colspan="3"><input type="text" id="FirstName" placeholder="Svetlin" class="textField" /></td>
+            </tr>
+            <tr>
+                <th><label for="Address">Address</label></th>
+                <td colspan="3"><textarea id="Address" placeholder="17 Hristo Botev str. floor 3 apt. 12"></textarea></td>      
+            </tr>
+            <tr>
+                <th><label for="City">City</label></th>
+                <td><input type="text" id="City" placeholder="Kaspichan" class="CityText" /></td>
+                <td><label for="State"><strong>State</strong></label></td>
+                <td><input type="text" id="State" class="StateText" /></td>        
+            </tr>
+            <tr>
+                <th><label for="PostaclCode">Zip/Postal Code</label></th>
+                <td colspan="3"><input type="text" id="PostaclCode" placeholder="9325" class="PostalCode" /></td>
+            </tr>
+            <tr>
+                <th><label for="countries">Country</label></th>
+                <td colspan="3">
+                    <select id="countries">
+                        <option value="Value 1" selected="selected">Bulgaria</option>
+                        <option value="Value 2">United Kingdom</option>
+                        <option value="Value 3">Na misho kry4mata</option>
+                        <option value="Value 4">Italy</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="Phone">Phone (country code, area code, number)</label></th>
+                <td colspan="3">(+<input type="text" id="Phone" placeholder="359" class="Phone"/> ) <input type="text" class="Phone" placeholder="88"/> - <input type="text" class="PhoneNum" placeholder="8334343"/></td>      
+            </tr>
+            <tr>
+                <th><label for="Email">E-mail</label></th>
+                <td colspan="3"><input type="email" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" id="Email" placeholder="nakov@kaspichan.com" class="textField" /></td>
+            </tr>
+            <tr>
+                <th><label for="Birth">Birth Date</label></th>
+                <td colspan="3">Month <input type="text" id="Birth" placeholder="06" class="Birth"/> Day <input type="text" class="Birth" placeholder="14"/> Year (4 digit) <input type="text" class="Year" placeholder="1980"</td>
+            </tr>
+            <tr>
+                <th><label for="gender">Gender</label></th>
+                <td colspan="3">
+                    <select id="gender">
+                        <option value="Value 1" selected="selected">Male</option>
+                        <option value="Value 2">Female</option>
+                        <option value="Value 3">Both</option>
+                        <option value="Value 4">Animal</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="springDate">Starting Date</label></th>
+                <td colspan="3"><input type="radio" name ="opa" id="springDate" value=""/><label for="springDate">Spring 2006</label> <input type="radio" id="summerDate" name="opa" value=""/><label for="summerDate">Summer 2006</label></td>
+            </tr>
+            <tr>
+                <th><label for="Address">Address</label></th>
+                <td colspan="3"><textarea id="Comments" placeholder="Please send more information about the logging."></textarea></td>      
+            </tr>
+            <tr id="blueRow">
+                <td colspan="4" class ="center">
+                    <input type="button" value="Submit" onclick="nxt()"/>
+                    <input type="reset" value="Clear This Form" />     
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+    

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <title>Snake</title>
+    <style>
+        body, html, div, img {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body, html, div {
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+<body onkeypress="checkDirection(event)">
+    <script>
+        var framesPerSecond = 15;
+        var direction = "right";
+        var food;
+        var screenWidth = screen.width;
+        var screenHeight = screen.height;
+        var foodCount = 0;
+        var Snake = function Snake() {
+            this.body = [];
+            this.class = "";
+            //this.moveSnake = function moveSnake(body) {
+            //    for (var i = 0; i < this.body.length; i++) {
+            //        alert($('.' + this.body[i].element.className).css("top"));
+            //        if (i == body.length-1) {
+            //            if (this.direction == "right") {
+            //                var curLeft =parseInt($("." + body[i].element.className).css("left")) + 20 + "px";
+            //                $("." + body[i].element.className).css({ "left":curLeft});
+            //            }
+            //        }
+            //        else $("." + body[i].element.className).css({ "left": $("." + body[i+1].element.className).css("left")});
+            //    } 
+
+            //}
+        }
+
+        var SnakeElement = function SnakeElement(element, className) {
+            this.element = element;
+            this.class = className;
+        }
+        var Food = function Food(top, left, className) {
+            this.top = top;
+            this.left = left;
+            this.elFood = document.createElement("div");
+            this.elFood.innerHTML = '#';
+            this.elFood.style.display = "inline-block";
+            this.elFood.style.position = "absolute";
+            this.elFood.style.top = top + "px";
+            this.elFood.style.left = left + "px";
+            this.elFood.className = "food" + className;
+            document.body.appendChild(this.elFood);
+        }
+        function addFood() {
+            if (food) {
+                food.elFood.style.display = "none";
+            }
+            var foodLeft = parseInt(randomNum(0, screen.width - 230));
+            while (parseInt(foodLeft % 10) != 1) {
+                foodLeft++;
+            }
+            while (parseInt(parseInt(foodLeft / 10) % 2) != 0) {
+                foodLeft += 10;
+            }
+
+            var foodTop = randomNum(0, screen.height - 200);
+            while (parseInt(foodTop % 10) != 1) {
+                foodTop++;
+            }
+            while (parseInt(parseInt(foodTop / 10) % 2) != 1) {
+                foodTop += 10;
+            }
+            food = new Food(foodTop, foodLeft, foodCount);
+            foodCount++;
+        }
+        $(document).ready(function () {
+            var snake = new Snake();
+            addFood();
+            for (var i = 0; i < 200; i += 20) {
+                curBody = document.createElement("div");
+                curBody.innerHTML = '@';
+                curBody.style.display = "inline-block";
+                curBody.style.position = "absolute";
+                curBody.style.top = 50 + "px";
+                curBody.style.left = i + 100 + "px";
+                document.body.appendChild(curBody);
+                curBody.className = (i / 2) / 10;
+                snakeElement = new SnakeElement(curBody, curBody.className);
+                snake.body.push(snakeElement);
+            }
+
+            requestAnimationFrame(function () { moveSnake(snake.body) });
+        });
+        function moveSnake(body) {
+            for (var i = 0; i < body.length - 1; i++) {
+                if (parseInt($("." + body[body.length - 1].element.className).css("left")) ==
+                    parseInt($("." + body[i].element.className).css("left")) &&
+                    parseInt($("." + body[body.length - 1].element.className).css("top")) ==
+                    parseInt($("." + body[i].element.className).css("top"))) {
+                    alert("YOU LOOSE !!!! \n Wanna try again ?");
+                    location.reload();
+                }
+            }
+            console.log(parseInt($("." + body[body.length - 1].element.className).css("top")) + 1);
+            console.log(food.top);
+            //console.log(parseInt($("." + body[body.length - 1].element.className).css("left")) + 1);
+            //console.log(food.left);
+            if (parseInt($("." + body[body.length - 1].element.className).css("left")) + 1 == parseInt(food.left)) {
+                if (parseInt($("." + body[body.length - 1].element.className).css("top")) + 1 == parseInt(food.top)) {
+                    addFood();
+                    var newElementBody = document.createElement("div");
+                    newElementBody.innerHTML = '@';
+                    newElementBody.style.display = "inline-block";
+                    newElementBody.style.position = "absolute";
+                    //newElementBody.style.top = 50 + "px";
+                    // newElementBody.style.left = i + 100 + "px";
+                    newElementBody.className = "opa";
+                    snakeElement = new SnakeElement(newElementBody, newElementBody.className);
+                    if (direction == "right") {
+                        var curLeft = parseInt($("opa").css("left")) - 20 + "px";
+                        var curTop = parseInt($("opa").css("top")) + "px";
+                        snakeElement.element.style.left = curLeft;
+                        snakeElement.element.style.top = curTop;
+                    }
+                    if (direction == "left") {
+                        var curLeft = parseInt($("opa").css("left")) + 20 + "px";
+                        var curTop = parseInt($("opa").css("top")) + "px";
+                        snakeElement.element.style.left = curLeft;
+                        snakeElement.element.style.top = curTop;
+                    }
+                    if (direction == "down") {
+                        var curLeft = parseInt($("opa").css("left")) + "px";
+                        var curTop = parseInt($("opa").css("top")) - 20 + "px";
+                        snakeElement.element.style.left = curLeft;
+                        snakeElement.element.style.top = curTop;
+                    }
+                    if (direction == "up") {
+                        var curLeft = parseInt($("opa").css("left")) + "px";
+                        var curTop = parseInt($("opa").css("top")) + 20 + "px";
+                        snakeElement.element.style.left = curLeft;
+                        snakeElement.element.style.top = curTop;
+                    }
+                    debugger;
+                    body.splice(0, 0, snakeElement);
+                    for (var i = 0; i < body.length; i++) {
+                        body[i].element.className = i;
+                    } document.body.appendChild(newElementBody);
+
+                }
+            }
+            setTimeout(function () {
+                for (var i = 0; i < body.length; i++) {
+                    //   alert($('.' + body[i].element.className).css("top"));
+                    if (i == body.length - 1) {
+                        if (direction == "right") {
+                            var curLeft = parseInt($("." + body[i].element.className).css("left")) + 20 + "px";
+                            if (parseInt(curLeft) > screenWidth - 20) {
+                                curLeft = 1 + "px";
+                            }
+                            $("." + body[i].element.className).css({ "left": curLeft });
+                        }
+                        if (direction == "left") {
+                            var curLeft = parseInt($("." + body[i].element.className).css("left")) - 20;
+                            if (parseInt(curLeft) < 0 ) {
+                                curLeft = screenWidth - 20 ;
+                            }
+                            while (parseInt(curLeft % 10) != 0) {
+                                alert(curLeft);
+                                curLeft--;
+                            }
+                            if (parseInt(parseInt(curLeft / 10) % 2) == 1) {
+                                curLeft -= 10;
+                            }
+                            curLeft += "px";
+                            $("." + body[i].element.className).css({ "left": curLeft });
+                        }
+                        if (direction == "down") {
+                            var curLeft = parseInt($("." + body[i].element.className).css("top")) + 20 + "px";
+                            if (parseInt(curLeft) > screenHeight - 139) {
+                                curLeft = 11 + "px";
+                            }
+                            $("." + body[i].element.className).css({ "top": curLeft });
+                        }
+                        if (direction == "up") {
+                            var curLeft = parseInt($("." + body[i].element.className).css("top")) - 20;
+                            if (parseInt(curLeft) <= 0 ) {
+                                curLeft = screenHeight -115;
+                            }
+                            while (parseInt(curLeft % 10) != 0) {
+                                alert(curLeft);
+                                curLeft--;
+                            }
+                            if ( parseInt(parseInt(curLeft/10)%2) == 0 ) {
+                                curLeft -= 10;
+                            }
+                            curLeft += "px";
+                            $("." + body[i].element.className).css({ "top": curLeft });
+                        }
+                    }
+                    else {
+                        $("." + body[i].element.className).css({ "left": $("." + body[i + 1].element.className).css("left") });
+                        $("." + body[i].element.className).css({ "top": $("." + body[i + 1].element.className).css("top") });
+                    }
+                }
+                requestAnimationFrame(function () { moveSnake(body) });
+            }, 1000 / framesPerSecond);
+        }
+        document.body.addEventListener("keydown", checkDirection, false);
+        function checkDirection(e) {
+            e = e || window.event;
+            if (e.keyCode == '38') {
+                if (direction != "down") {
+                    direction = "up";
+                }
+            }
+            else if (e.keyCode == '40') {
+                if (direction != "up") {
+                    direction = "down";
+                }
+            }
+            else if (e.keyCode == '37') {
+                if (direction != "right") {
+                    direction = "left";
+                }
+            }
+            else if (e.keyCode == '39') {
+                if (direction != "left") {
+                    direction = "right";
+                }
+            }
+        }
+
+        function randomNum(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+    </script>
+</body>
+</html>

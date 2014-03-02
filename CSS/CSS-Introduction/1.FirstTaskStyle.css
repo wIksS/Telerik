@@ -1,0 +1,42 @@
+﻿thead {
+    font-size:20px;
+    color:#9c9797;
+}
+body {
+    background-color:#484545;
+}
+.firstDiv {
+    width:200px;
+}
+.newLineFirstCol{
+    vertical-align:top;
+}
+.firstCol {
+    width:130px
+}
+.firstCol, .newLineFirstCol {
+    font-style:italic;
+    color:#fff;  
+}
+.yellowText {
+    color:#fbfebe;
+    vertical-align:top;
+}
+td {
+    padding:8px
+}
+span.noSupport {
+    color:red
+}
+span.grayText {
+    color:#9c9797;
+}
+span.orangeText {
+    color:#ff8108;
+}
+span.circle {
+    border-radius: 50%;
+    width: 2px;
+    height: 2px;
+    background-color: #71b47a;
+}

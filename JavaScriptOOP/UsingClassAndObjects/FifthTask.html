@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="ConsoleStyle.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body onkeypress="RunScript(event)">
+    <div id="js-console" class="js-console">
+        <div>Enter person data </div>
+        <div>First name : <input type="text" /></div>
+        <div>Last name : <input type="text" /></div>
+        <div>Age : <input type="text" /></div>
+        <div>(Press enter)</div>
+    </div>
+    <script src="ConsoleScript.js"></script>
+    <script>
+        var persons = [];
+
+        function RunScript(event) {
+
+            if (event.keyCode == 13) {
+                var firstName = jsConsole.read("div div:nth-of-type(2) input");
+                var lastName = jsConsole.read("div div:nth-of-type(3) input");
+                var age = jsConsole.read("div div:nth-of-type(4) input");                
+                persons.push(new Person(firstName, lastName, age));
+                var youngestPerson = FindYoungestPerson(persons);
+                jsConsole.writeLine("The youngest person is : " + persons[youngestPerson].firstName + " " + persons[youngestPerson].lastname);
+            }
+        }
+
+        function FindYoungestPerson(persons) {
+            var index = 0;
+            var age = parseInt(persons[0].age);
+            for (var i = 1; i < persons.length; i++) {
+                debugger;
+                if (parseInt(persons[i].age) < age) {
+                    age = parseInt(persons[i].age);
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+        var Person = function (firstName, lastName, age) {
+            return {
+                firstName: firstName,
+                lastname: lastName,
+                age:age
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <canvas id="canvas" width="500px" height="500px"></canvas>
+    <script>
+        var canvas = document.getElementById("canvas"),
+        ctx = canvas.getContext("2d");
+        ctx.beginPath();
+        ctx.save();
+        ctx.scale(1, 0.3);
+        //ctx.moveTo(50, 50);
+        ctx.arc(150, 200, 30, 0, 2 * Math.PI, false);
+        ctx.restore();
+        ctx.moveTo(120, 60);
+        ctx.lineTo(120, 120);
+        ctx.moveTo(180,60);
+        ctx.lineTo(180, 120);
+        ctx.quadraticCurveTo(150, 135, 120, 120);
+        ctx.bezierCurveTo(5, 140, 270, 145, 180, 120);
+        ctx.moveTo(120, 150);
+        ctx.arc(120, 150, 50, 0, 2 * Math.PI, false);
+        ctx.stroke();
+    </script>
+</body>
+</html>

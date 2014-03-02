@@ -1,0 +1,11 @@
+﻿p {
+    color:#0094ff;
+    font-family:Consolas;
+}
+    p:first-letter {
+        font-family:Edwardian Script ITC;
+        font-size:35px
+    }
+    p:first-line {
+        font-weight:bold;
+    }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="ConsoleStyle.css" rel="stylesheet" />
+</head>
+<body onkeypress="return RunScript(event)">
+    <div id="js-console" class="js-console">
+        <div>Enter array (with the removal element in the end) :<input type="text" id="firstInput" value='1,2,3,"1"' /></div>
+        <div>(Press enter)</div>
+    </div>
+    <script src="ConsoleScript.js"></script>
+    <script>
+        var array;
+
+        function RunScript(event) {
+            if (event.keyCode == 13) {
+                array = jsConsole.readArray('input', ',');
+                var numForRemoval = array[array.length - 1];
+                if (numForRemoval.length > 1) {
+                    var stringToArr = numForRemoval.split('');
+                    stringToArr.remove("\"");
+                    numForRemoval = stringToArr[0];
+                }
+                array.splice(array.length - 1, 1);
+                array.remove(numForRemoval)
+                for (var i = 0; i < array.length; i++) {
+                    jsConsole.write(array[i] + " ");
+                }
+                jsConsole.writeLine();
+            }
+        }
+
+        Array.prototype.remove = function (element) {
+            var index = this.indexOf(element);
+            while (index != -1) {
+                this.splice(index, 1);
+                index = this.indexOf(element);
+            }
+
+        }
+    </script>
+</body>
+</html>

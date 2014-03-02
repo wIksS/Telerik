@@ -1,0 +1,45 @@
+body {
+    background-color:#A9A9A9;
+}
+h1{
+    color:#FAFAD2;
+}
+li {
+    list-style-type:none;
+    text-align:center;
+}
+li a {
+    color:white;
+    text-decoration:none;
+}
+ul {
+    text-align:center
+}
+li:nth-child(2) {
+    background-color:#D3D3D3;
+    display:inline;
+}
+li:last-child {
+    text-decoration:underline;
+}
+body>header>h1 {
+    text-align:center;
+}
+article:nth-child(even){
+    display:none
+}
+body > footer {
+    text-align:center
+}
+a {
+    text-decoration:none;
+    color:inherit;
+}
+article :nth-child(2) {
+    display:block;
+    white-space:nowrap;
+    overflow:hidden; 
+    width: 857px;      
+}
+
+

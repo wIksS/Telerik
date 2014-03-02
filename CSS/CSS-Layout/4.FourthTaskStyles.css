@@ -1,0 +1,153 @@
+﻿body, html, div, header, h1, h2, h3 {
+    padding:0px;
+    margin:0px;
+}
+body {
+    font-family: Calibri;
+}
+.inlineBlock,header {
+    display:inline-block;
+}
+.leftSideBar {
+    background:#f1f1f1;
+    width:180px;
+    padding-right:0px
+}
+#wrapper, .content {
+    border:2px solid #a7a7a7;
+    padding-top:1px
+}
+.content {
+    vertical-align:top;
+    margin-left:0px;
+    width:800px
+}
+.rightSideBar {
+    width:200px;
+    vertical-align:top;
+    border:2px solid #a7a7a7;
+    text-align:center
+}
+h2 {
+    width:790px;
+    background:#808080;
+    font-size:18px;
+    color:white;
+}
+hr {
+    background:#a7a7a7;
+    border:0;
+    height:2px;
+    margin-right:5px;
+    margin-left:5px;
+}
+.leftSideBar h1 {
+    font-size:16px;
+    margin-top:15px;
+    color:#900b09;
+    font-weight:bold;
+}
+.leftSideBar .homeDiv {
+    font-weight:bold;
+    margin-top:20px
+}
+.content h1 {
+    font-size:20px;
+    margin-left:5px;
+    margin-top:18px;
+    margin-bottom:12px;
+}
+button {
+    background:white;
+    border:1px solid black;    
+    margin-left:5px;
+    width:110px;
+    cursor:pointer
+}
+h2, .paddingLeft {
+    padding-left:5px
+}
+.imgAndTextWrapper {
+    margin-top:6px;
+}
+.imgText {
+    margin-left:12px;
+    position:relative;
+    width:680px;
+    vertical-align:top;
+}
+.startLearningCSS {
+    margin-left:110px;
+    margin-bottom:30px
+}
+.content a {
+    color:#900b09;
+    text-decoration:underline;
+}
+.tryIt {
+    width:200px;
+    margin-top:11px;
+}
+.marginTop,.imgText {
+    margin-top:10px;
+}
+.marginBot {
+    margin-bottom:14px
+}
+.content hr:last-of-type {
+    margin-bottom:50px
+}
+.rightSideBar h2 {
+    width:195px;
+    background:#808080;
+}
+.rightSideBar button{
+    width:23px;
+    background: #fafaf9; /* Old browsers */
+    background: -moz-linear-gradient(top,  #fafaf9 20%, #e1ddd4 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#fafaf9), color-stop(100%,#e1ddd4)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #fafaf9 20%,#e1ddd4 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #fafaf9 20%,#e1ddd4 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #fafaf9 20%,#e1ddd4 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #fafaf9 20%,#e1ddd4 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafaf9', endColorstr='#e1ddd4',GradientType=0 ); /* IE6-9 */
+    border-radius:4px;
+    font-weight:bold;
+}
+.rightSideBar .secondButton {
+    border: 1px solid #75a2c2;
+    background: #d5f0fe;
+    color: #64d4fd;
+    font-weight: bold;
+}
+input {
+    border:1px solid #85a1bc;
+    width:130px;
+    height:20px;
+    margin-top:8px;
+    margin-left:15px
+}
+div .rightSideBar a {
+    color:#910e0c
+}
+.rightWrapper {
+    border:2px solid #a7a7a7;
+    padding-bottom:5px
+}
+.buttonDiv button{
+    width:110px;
+    height:40px;
+    margin-top:5px
+}
+.prev {
+    background:url(http://devevolution.com/wp-content/uploads/2013/01/leftarrow.png);
+    background-repeat:no-repeat;
+    background-position:left center;
+    background-position:5px;
+}
+.next {    
+    background:url(http://devevolution.com/wp-content/uploads/2013/01/rightarrow.png);
+    background-repeat:no-repeat;
+    background-position:right center;
+    background-position:93px
+}

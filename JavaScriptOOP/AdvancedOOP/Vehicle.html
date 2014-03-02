@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="ConsoleStyle.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body onkeypress="clicked(event)">
+    <div id="js-console" class="js-console">
+    </div>
+    <script src="ConsoleScript.js"></script>
+    <script>
+        var Vehicle = function () {
+            this.speed = 0;
+            this.propulsionUnits = [];
+            this.acelerate = function acelerate() {
+                this.speed = 0;
+                for (var i = 0; i < this.propulsionUnits.length; i++) {
+                    this.speed += this.propulsionUnits[i].checkAceleration();
+                }
+            }
+        }
+        var LandVehicle = function (wheelSize) {
+            for (var i = 0; i < 4; i++) {
+                this.propulsionUnits.push(new Wheel(wheelSize));
+            }
+        }
+        LandVehicle.prototype = new Vehicle();
+        var AirVehicle = function (power, afterBurner) {
+            this.propulsionUnits.push(new PropellingNozzles(power, afterBurner));
+            this.switchAfterBurners = function () {
+                this.propulsionUnits[0].afterBurner = !this.propulsionUnits[0].afterBurner;
+            }
+        }
+        AirVehicle.prototype = new Vehicle();
+        var WaterVehicle = function (propellers, fins, clockWise) {
+            for (var i = 0; i < propellers; i++) {
+                this.propulsionUnits.push(new Propeller(fins, clockWise));
+            }
+            this.changeSpinDirection = function () {
+                var newPropellersDirection = !this.propulsionUnits[0].clockWise;
+                for (var i = 0; i < propellers; i++) {
+                    this.propulsionUnits[i].clockWise = newPropellersDirection;
+                }
+            }
+        }
+        WaterVehicle.prototype = new Vehicle();
+        var AmphibiousVehicle = function (fins, clockWise, radius) {
+            this.mode = 'water';
+            this.propulsionUnits.push(new Propeller(fins, clockWise));
+            this.changeVehicleMode = function () {
+                this.propulsionUnits.length = 0;
+                if (this.mode == 'water') {
+                    this.mode = 'land';
+                    for (var i = 0; i < 4; i++) {
+                        this.propulsionUnits.push(new Wheel(radius));
+                    }
+                }
+                else {
+                    this.mode = 'water';
+                    this.propulsionUnits.push(new Propeller(fins, clockWise));
+                }
+            }
+            this.changeSpinDirection = function () {
+                if (this.mode == 'water') {
+                    var newPropellersDirection = !this.propulsionUnits[0].clockWise;
+                    this.propulsionUnits[0].clockWise = newPropellersDirection;
+                }
+            }
+        }
+        AmphibiousVehicle.prototype = new Vehicle();
+        var Wheel = function (radius) {
+            this.checkAceleration = function () {
+                return Math.PI * 2 * radius;
+            }
+        }
+        var Propeller = function (fins, clockWise) {
+            this.clockWise = clockWise;
+            //this.aceleration = this.checkAceleration();
+            this.checkAceleration = function () {
+                if (this.clockWise) {
+                    return fins;
+                }
+                else {
+                    return fins * -1;
+                }
+            }
+        }
+        var PropellingNozzles = function (power, afterBurner) {
+            this.afterBurner = afterBurner;
+            this.checkAceleration = function () {
+                if (this.afterBurner) {
+                    return 2 * power;
+                }
+                else {
+                    return power;
+                }
+            }
+        }
+        var waterVehicle = new WaterVehicle(1, 2, true);
+        waterVehicle.acelerate();
+        waterVehicle.changeSpinDirection();
+        waterVehicle.acelerate();
+        jsConsole.writeLine("Water vehicle speed with reversed spin direction ---> " + waterVehicle.speed);
+        jsConsole.writeLine("------------------------------------------------------------------------------");
+        var airVehicle = new AirVehicle(15, false);
+        airVehicle.acelerate();
+        jsConsole.writeLine("Air vehicle speed with power 15 and turned off after burners ---> " + airVehicle.speed);
+        jsConsole.writeLine("------------------------------------------------------------------------------");
+        airVehicle.switchAfterBurners();
+        airVehicle.acelerate();
+        jsConsole.writeLine("Air vehicle speed with power 15 and turned on after burners ---> " + airVehicle.speed);
+        jsConsole.writeLine("------------------------------------------------------------------------------");
+        var amphibiousVehicle = new AmphibiousVehicle(2, true, 5);
+        amphibiousVehicle.acelerate();
+        jsConsole.writeLine("Amphibiouts vehicle with water mode and 2 pins ---> " + amphibiousVehicle.speed);
+        jsConsole.writeLine("------------------------------------------------------------------------------");
+        amphibiousVehicle.changeVehicleMode();
+        amphibiousVehicle.acelerate();
+        jsConsole.writeLine("Amphibiouts vehicle with land mode and 5 wheel radius ---> " + amphibiousVehicle.speed);
+        jsConsole.writeLine("------------------------------------------------------------------------------");
+        amphibiousVehicle.changeVehicleMode();
+        amphibiousVehicle.changeSpinDirection();
+        amphibiousVehicle.acelerate();
+        jsConsole.writeLine("Amphibiouts vehicle with water mode and 2 pins and reversed spin direction ---> " + amphibiousVehicle.speed);
+    </script>
+</body>
+</html>

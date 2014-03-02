@@ -1,0 +1,71 @@
+﻿body, html {
+    height:100%;
+    width:100%;
+}
+body, html, div,article {
+    margin:0px;
+    padding:0px
+}
+span {
+    font-weight:bold;
+}
+.wrapper {
+    background:#eeeeee;
+    width:400px;
+    margin-left:400px;
+    margin-bottom:2%;
+    border-radius:9px;
+}
+header > div {
+    padding-top :3%;
+    padding-left :3%;
+}
+.articleWrapper {
+    margin-top:7%;
+    border:1px solid #b7b7b7;
+    margin-left:2%;
+    margin-right:2%;
+    padding:12px;
+    padding-bottom:8px;
+    background:white;
+}
+.articleWrapper > div {
+    margin-bottom:0px;
+    padding:0px;
+    display:inline-block;
+}
+.articleText {
+    display:inline-block;
+    width:190px;
+    font-size:14px;
+    vertical-align:top;
+    margin-left:10px;
+    position:absolute;
+    margin-top:-60px
+
+}
+.firstButton, .secondButton {
+    display:inline-block;
+    vertical-align:bottom;
+    position:relative;  
+    background-image:url(http://www.successmakersassociates.com/red%20button.png);
+    width:70px;
+    height:26px;
+    background-size: 100% 100%;
+    color:white;
+    text-align:center;
+    vertical-align:bottom;
+    margin-bottom:5px;
+}
+.firstButton {
+    width:70px;
+    margin-left:70px;
+    
+}
+.secondButton {
+    width:58px;
+}
+.textAndButtonWrapper {
+    display:inline-block;
+    position:relative;
+}
