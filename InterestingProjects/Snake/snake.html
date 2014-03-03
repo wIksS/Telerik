@@ -49,7 +49,7 @@
             this.top = top;
             this.left = left;
             this.elFood = document.createElement("div");
-            this.elFood.innerHTML = '#';
+            this.elFood.innerHTML = "<img width=" + "25px" + " src=" + "images/food.png" + ">";
             this.elFood.style.display = "inline-block";
             this.elFood.style.position = "absolute";
             this.elFood.style.top = top + "px";
@@ -84,7 +84,10 @@
             addFood();
             for (var i = 0; i < 200; i += 20) {
                 curBody = document.createElement("div");
-                curBody.innerHTML = '@';
+                var curImg = document.createElement("img");
+                curImg.src = "images/head.png";
+                curImg.style.width = "20px";
+                curBody.appendChild(curImg);
                 curBody.style.display = "inline-block";
                 curBody.style.position = "absolute";
                 curBody.style.top = 50 + "px";
@@ -107,15 +110,18 @@
                     location.reload();
                 }
             }
-            console.log(parseInt($("." + body[body.length - 1].element.className).css("top")) + 1);
-            console.log(food.top);
+            //console.log(parseInt($("." + body[body.length - 1].element.className).css("top")) + 1);
+            //console.log(food.top);
             //console.log(parseInt($("." + body[body.length - 1].element.className).css("left")) + 1);
             //console.log(food.left);
             if (parseInt($("." + body[body.length - 1].element.className).css("left")) + 1 == parseInt(food.left)) {
                 if (parseInt($("." + body[body.length - 1].element.className).css("top")) + 1 == parseInt(food.top)) {
                     addFood();
                     var newElementBody = document.createElement("div");
-                    newElementBody.innerHTML = '@';
+                    var curImg = document.createElement("img");
+                    curImg.src = "images/head.png";
+                    curImg.style.width = "20px";
+                    newElementBody.appendChild(curImg);
                     newElementBody.style.display = "inline-block";
                     newElementBody.style.position = "absolute";
                     //newElementBody.style.top = 50 + "px";
@@ -146,7 +152,6 @@
                         snakeElement.element.style.left = curLeft;
                         snakeElement.element.style.top = curTop;
                     }
-                    debugger;
                     body.splice(0, 0, snakeElement);
                     for (var i = 0; i < body.length; i++) {
                         body[i].element.className = i;
@@ -167,11 +172,11 @@
                         }
                         if (direction == "left") {
                             var curLeft = parseInt($("." + body[i].element.className).css("left")) - 20;
-                            if (parseInt(curLeft) < 0 ) {
-                                curLeft = screenWidth - 20 ;
+                            if (parseInt(curLeft) < 0) {
+                                curLeft = screenWidth - 20;
                             }
                             while (parseInt(curLeft % 10) != 0) {
-                                alert(curLeft);
+                                // alert(curLeft);
                                 curLeft--;
                             }
                             if (parseInt(parseInt(curLeft / 10) % 2) == 1) {
@@ -188,15 +193,15 @@
                             $("." + body[i].element.className).css({ "top": curLeft });
                         }
                         if (direction == "up") {
-                            var curLeft = parseInt($("." + body[i].element.className).css("top")) - 20;
-                            if (parseInt(curLeft) <= 0 ) {
-                                curLeft = screenHeight -115;
+                            var curLeft = parseInt($("." + body[i].element.className).css("top")) - 20 ;
+                            if (parseInt(curLeft) <= 0) {
+                                curLeft = screenHeight - 115;
                             }
                             while (parseInt(curLeft % 10) != 0) {
-                                alert(curLeft);
+                                //  alert(curLeft);
                                 curLeft--;
                             }
-                            if ( parseInt(parseInt(curLeft/10)%2) == 0 ) {
+                            if (parseInt(parseInt(curLeft / 10) % 2) == 0) {
                                 curLeft -= 10;
                             }
                             curLeft += "px";
