@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Falling Rocks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /*To hide the horizontal scroller appearing during the animation*/
+            overflow: hidden;
+        }
+
+        #clouds {
+            padding: 100px 0;
+            background: #c9dbe9;
+            background: -webkit-linear-gradient(top, #c9dbe9 0%, #fff 100%);
+            background: -linear-gradient(top, #c9dbe9 0%, #fff 100%);
+            background: -moz-linear-gradient(top, #c9dbe9 0%, #fff 100%);
+        }
+
+        /*Time to finalise the cloud shape*/
+        .cloud {
+            width: 200px;
+            height: 60px;
+            background: #fff;
+            border-radius: 200px;
+            -moz-border-radius: 200px;
+            -webkit-border-radius: 200px;
+            position: relative;
+        }
+
+            .cloud:before, .cloud:after {
+                content: '';
+                position: absolute;
+                background: #fff;
+                width: 100px;
+                height: 80px;
+                position: absolute;
+                top: -15px;
+                left: 10px;
+                border-radius: 100px;
+                -moz-border-radius: 100px;
+                -webkit-border-radius: 100px;
+                -webkit-transform: rotate(30deg);
+                transform: rotate(30deg);
+                -moz-transform: rotate(30deg);
+            }
+
+            .cloud:after {
+                width: 120px;
+                height: 120px;
+                top: -55px;
+                left: auto;
+                right: 15px;
+            }
+
+        /*Time to animate*/
+        .x1 {
+            -webkit-animation: moveclouds 15s linear infinite;
+            -moz-animation: moveclouds 15s linear infinite;
+            -o-animation: moveclouds 15s linear infinite;
+        }
+
+        /*variable speed, opacity, and position of clouds for realistic effect*/
+        .x2 {
+            left: 200px;
+            -webkit-transform: scale(0.6);
+            -moz-transform: scale(0.6);
+            transform: scale(0.6);
+            opacity: 0.6; /*opacity proportional to the size*/
+            /*Speed will also be proportional to the size and opacity*/
+            /*More the speed. Less the time in 's' = seconds*/
+            -webkit-animation: moveclouds 25s linear infinite;
+            -moz-animation: moveclouds 25s linear infinite;
+            -o-animation: moveclouds 25s linear infinite;
+        }
+
+        .x3 {
+            left: -250px;
+            top: -200px;
+            -webkit-transform: scale(0.8);
+            -moz-transform: scale(0.8);
+            transform: scale(0.8);
+            opacity: 0.8; /*opacity proportional to the size*/
+            -webkit-animation: moveclouds 20s linear infinite;
+            -moz-animation: moveclouds 20s linear infinite;
+            -o-animation: moveclouds 20s linear infinite;
+        }
+
+        .x4 {
+            left: 470px;
+            top: -250px;
+            -webkit-transform: scale(0.75);
+            -moz-transform: scale(0.75);
+            transform: scale(0.75);
+            opacity: 0.75; /*opacity proportional to the size*/
+            -webkit-animation: moveclouds 18s linear infinite;
+            -moz-animation: moveclouds 18s linear infinite;
+            -o-animation: moveclouds 18s linear infinite;
+        }
+
+        .x5 {
+            left: -150px;
+            top: -150px;
+            -webkit-transform: scale(0.8);
+            -moz-transform: scale(0.8);
+            transform: scale(0.8);
+            opacity: 0.8; /*opacity proportional to the size*/
+            -webkit-animation: moveclouds 20s linear infinite;
+            -moz-animation: moveclouds 20s linear infinite;
+            -o-animation: moveclouds 20s linear infinite;
+        }
+
+        @-webkit-keyframes moveclouds {
+            0% {
+                margin-left: 1000px;
+            }
+
+            100% {
+                margin-left: -1000px;
+            }
+        }
+
+        @-moz-keyframes moveclouds {
+            0% {
+                margin-left: 1000px;
+            }
+
+            100% {
+                margin-left: -1000px;
+            }
+        }
+
+        @-o-keyframes moveclouds {
+            0% {
+                margin-left: 1000px;
+            }
+
+            100% {
+                margin-left: -1000px;
+            }
+        }
+
+        img {
+            border: 1px solid black;
+        }
+    </style>
+    <style>
+        img {
+            position: absolute;
+        }
+
+        canvas {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+    <div id="clouds">
+        <div class="cloud x1"></div>
+        <!-- Time for multiple clouds to dance around -->
+        <div class="cloud x2"></div>
+        <div class="cloud x3"></div>
+        <div class="cloud x4"></div>
+        <div class="cloud x5"></div>
+
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        var aceleration = 0;
+        var isRight = false;
+        var isPressed = false;
+        var isLeft = false;
+        var previousPic = "right";
+        var jump = false;
+        var rocks = [];
+        var time = 0;
+        var rocksCount = 0;
+        var rockImg = document.createElement("img");
+        var timePersent = 80;
+        rockImg.src = "images/rock.png";
+        var ratio = 1;
+        if (!window.requestAnimationFrame) {
+
+            window.requestAnimationFrame = (function () {
+
+                return window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame || // comment out if FF4 is slow (it caps framerate at ~30fps: https://bugzilla.mozilla.org/show_bug.cgi?id=630127)
+                window.oRequestAnimationFrame ||
+                    window.msRequestAnimationFrame ||
+                    function ( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
+
+                        window.setTimeout(callback, 1000 / 60);
+
+                    };
+
+            })();
+
+        }
+        var Player = function () {
+            this.img = document.createElement("img");
+            this.left = 500;
+            this.top = 50;
+            this.leftImg = document.createElement("img");
+        }
+
+        var Rock = function () {
+            this.img = document.createElement("img");
+            this.left = randomNum(0, window.innerWidth - 100);
+            this.top = -500;
+            this.aceleration = 0;
+            //this.img.src = "images/rock.png";
+            // this.img.style.border = "1px solid blue";
+            this.width = randomNum(10, 400);
+            if (timePersent < 50) {
+                this.width -= randomNum(1, 70);
+            }
+            else if (timePersent < 20) {
+                this.width -= randomNum(1, 150);
+            }
+            else if (timePersent < 10) {
+                this.width -= randomNum(1, 200);
+            }
+            this.height = this.width / ratio;
+            this.speed = randomNum(5, 15);
+            if (this.width > 350) {
+                this.speed = randomNum(3, 5);
+            }
+            else if (this.width > 250) {
+                this.speed = randomNum(5, 10);
+            }
+            else if (this.width > 150) {
+                this.speed = randomNum(10, 15);
+            }
+            else {
+                this.speed = randomNum(15, 20);
+            }
+        }
+        $(document).ready(function () {
+            c = document.getElementById("myCanvas");
+            ctx = c.getContext("2d");
+            //$('body').css('background-image', 'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcf78zAwuJe4lf8HwaKQwxFo0GaV7TQ1PPEgW_O2ZrMe62tZfs)', 'background-size', '500px');
+            ctx.canvas.width = window.innerWidth;
+            ctx.canvas.height = window.innerHeight;
+            player = new Player();
+            player.img.src = "images/oldNinja.png";
+            player.leftImg.src = "images/leftNinja.png";
+            player.img.onload = function () {
+                ctx.drawImage(player.img, player.left, player.top, 70, 70);
+                ctx.drawImage(player.leftImg, player.left, player.top, 70, 70);
+            }
+            document.addEventListener("keydown", keydown, false);
+            document.addEventListener("keyup", keyup, false);
+            document.addEventListener("keydown", keydownCanvas, false);
+            var bod = $("body"); bod.scrollTop(50)
+            // bod.scrollTop(50);
+
+            //document.body.addEventListener("keyup", function (e) {
+            //    if (e.keyCode==39) {
+            //        isRight = true;
+            //    }
+            //}, true);
+            //document.body.addEventListener("keyup", function (e) {
+            //    if (e.keyCode == 39) {
+            //        isRight = false;
+            //    }
+            //}, true); 
+            update();
+        });
+        var opa = 0;
+        function update() {
+            time++;
+            if (time % timePersent == 0) {
+                rocks.push(new Rock());
+                if (timePersent > 10) {
+                    timePersent--;
+                    console.log(timePersent);
+                }
+            }
+            ctx.clearRect(0, 0, c.width, c.height);
+            ninjaJump();
+            if (isRight) {
+                if (player.left < window.innerWidth - 71) {
+                    player.left += 15;
+                }
+            }
+            else if (isLeft) {
+                if (player.left > 4) {
+                    player.left -= 15;
+                }
+            }
+            if (player.top < c.height - 70 && !jump) {
+                aceleration += 1;
+                player.top += aceleration;
+            }
+            else if (!jump) {
+                aceleration = 0;
+                player.top = c.height - 70;
+            }
+            if (previousPic == "right") {
+                ctx.drawImage(player.img, player.left, player.top, 70, 70);
+            }
+            else if (previousPic == "left") {
+                ctx.drawImage(player.leftImg, player.left, player.top, 70, 70);
+            }
+            for (var i = 0; i < rocks.length; i++) {
+
+                rocks[i].top += rocks[i].speed;
+                if (rocks[i].top < window.innerHeight) {
+                    ctx.drawImage(rockImg, rocks[i].left, rocks[i].top, rocks[i].width, rocks[i].height);
+                }
+                checkCollision(player.left, player.top, 70, 70, rocks[i].left, rocks[i].top, rocks[i].width, rocks[i].height);
+
+            }
+            requestAnimationFrame(update);
+        };
+
+        var keydown = function (e) {
+            if (e.keyCode == 39) {
+                isRight = true;
+                player.leftImg.style.display = "none";
+                player.img.style.display = "inline-block";
+                previousPic = "right";
+            }
+            if (e.keyCode == 37) {
+                isLeft = true;
+                player.img.style.display = "none";
+                player.leftImg.style.display = "inline-block";
+                previousPic = "left";
+            }
+
+        }
+        var keydownCanvas = function (e) {
+            if (e.keyCode == 38) {
+                debugger;
+                if (player.top > window.innerHeight - 71) {
+                    jump = true;
+                    aceleration = 0;
+                }
+                // alert(player.top + " " + player.left + rock.top + " " + rock.left)
+            }
+        }
+        var keyup = function (e) {
+            if (e.keyCode == 37) {
+                isLeft = false;
+            }
+            if (e.keyCode == 39) {
+                isRight = false;
+            }
+        }
+
+        //function checkCollision() {
+        //    for (var i = 0; i < rocks.length; i++) {
+        //        if (rocks[i].top == player.top && rocks[i].left == player.left) {
+        //            alert(5);
+        //        }
+        //    }
+        //}
+
+        var upAceleration = 22;
+
+        function ninjaJump() {
+            if (jump) {
+                if (player.top > c.height - 70) {
+                    player.top = c.height - 90;
+                    jump = false;
+                    return;
+                }
+                player.top -= upAceleration;
+                upAceleration -= 1;
+                // opa -= 10;
+                //bod.scrollTop(opa);
+                if (upAceleration == 0) {
+                    aceleration = 0;
+                    upAceleration = 22;
+                    jump = false;
+                }
+            }
+        }
+
+        function randomNum(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        function checkCollision(x1, y1, w1, h1, x2, y2, w2, h2) {
+            //        if (ax1 < x2 + b.width &&
+            //x1 + wq > x2 &&
+            //y1 < b.y + y2 &&
+            //y1 + h1 > h2) return true;
+            if (x1 < x2 + w2 && x1 > x2 && y1 < y2 + h2 && y1 + h1 > y2) {
+                // alert("You loose !!!!");
+                window.location.href = window.location.href;
+            }
+            //w2 += x2;
+            //w1 += x1;
+            //if (x2 > w1 || x1 > w2) return false;
+            //h2 += y2;
+            //h1 += y1;
+            //if (y2 > h1 || y1 > h2) return false;
+            //return true;
+        }
+    </script>
+</body>
+</html>

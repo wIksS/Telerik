@@ -49,7 +49,7 @@
             this.top = top;
             this.left = left;
             this.elFood = document.createElement("div");
-            this.elFood.innerHTML = "<img width=" + "25px" + " src=" + "images/food.png" + ">";
+            this.elFood.innerHTML = "<img width=" + "25px" + " height=" + "23px" + " src=" + "images/food.png" + ">";
             this.elFood.style.display = "inline-block";
             this.elFood.style.position = "absolute";
             this.elFood.style.top = top + "px";
@@ -87,6 +87,8 @@
                 var curImg = document.createElement("img");
                 curImg.src = "images/head.png";
                 curImg.style.width = "20px";
+               // curImg.style.width = "16px";
+
                 curBody.appendChild(curImg);
                 curBody.style.display = "inline-block";
                 curBody.style.position = "absolute";
