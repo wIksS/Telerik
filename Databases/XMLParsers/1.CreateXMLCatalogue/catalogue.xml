@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<Catalogue>
+	<Album Name="na pesho imeto" Artist="pesho" Year="1997" Producer="na pesho producera" Price="na pesho na albuma praica">
+		<Song Title="na pesho pesenta taitala" Duration="150" />
+		<Song Title="na na brat mu pesho pesenta taitala" Duration="15" />
+		<Song Title="na brat mu pesho na sestra mu pesenta taitala" Duration="1500" />
+	</Album>
+	<Album Name="na pesho imeto" Artist="pesho" Year="1997" Producer="na pesho producera" Price="na pesho na albuma praica">
+		<Song Title="na pesho pesenta taitala" Duration="150" />
+		<Song Title="na na brat mu pesho pesenta taitala" Duration="15" />
+		<Song Title="na brat mu pesho na sestra mu pesenta taitala" Duration="1500" />
+	</Album>
+	<Album Name="na pesho imeto" Artist="pesho" Year="1997" Producer="na pesho producera" Price="na pesho na albuma praica">
+		<Song Title="na pesho pesenta taitala" Duration="150" />
+		<Song Title="na na brat mu pesho pesenta taitala" Duration="15" />
+		<Song Title="na brat mu pesho na sestra mu pesenta taitala" Duration="1500" />
+	</Album>
+	<Album Name="na pesho imeto" Artist="pesho" Year="1997" Producer="na pesho producera" Price="na pesho na albuma praica">
+		<Song Title="na pesho pesenta taitala" Duration="150" />
+		<Song Title="na na brat mu pesho pesenta taitala" Duration="15" />
+		<Song Title="na brat mu pesho na sestra mu pesenta taitala" Duration="1500" />
+	</Album>
+	<Album Name="na pesho imeto" Artist="pesho" Year="1997" Producer="na pesho producera" Price="na pesho na albuma praica">
+		<Song Title="na pesho pesenta taitala" Duration="150" />
+		<Song Title="na na brat mu pesho pesenta taitala" Duration="15" />
+		<Song Title="na brat mu pesho na sestra mu pesenta taitala" Duration="1500" />
+	</Album>
+</Catalogue>

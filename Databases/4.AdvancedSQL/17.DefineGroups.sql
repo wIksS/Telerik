@@ -1,0 +1,4 @@
+CREATE TABLE Groups(
+	Name nvarchar(50) UNIQUE,
+	GroupID int IDENTITY PRIMARY KEY
+)
